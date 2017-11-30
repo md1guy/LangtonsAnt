@@ -10,7 +10,7 @@ class Ant {
   
   void DrawAnt() {
     fill(255, 0, 0);
-    ellipse(i * cellWidth + cellWidth / 2, j * cellHeight + cellHeight / 2, cellWidth / 2, cellHeight / 2);
+    ellipse(i * cellWidth + cellWidth / 2, j * cellHeight + cellHeight / 2, cellWidth, cellHeight);
   }
   
   void MoveAnt(boolean[][] grid) {
@@ -60,7 +60,7 @@ class Ant {
     }
     
     stroke(0, 255, 0);
-    strokeWeight(cellWidth / 5);
+    strokeWeight(cellWidth / 2);
     point(x, y);
   }
 }

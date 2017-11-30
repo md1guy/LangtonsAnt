@@ -15,6 +15,11 @@ Ant ant;
 void setup() {
   size(800, 800);
   
+  cellWidth = width / rows;
+  cellHeight = height / cols;
+  
+  background(51);
+  
   frameRate(10000);
   
   for(int i = 0; i < rows; i++) {
@@ -27,17 +32,12 @@ void setup() {
 }
 
 void draw() {
-  background(51);
-  
   DrawGrid(grid);
   ant.DrawAnt();
   ant.MoveAnt(grid);
 }
 
 void DrawGrid(boolean[][] grid) {
-  cellWidth = width / rows;
-  cellHeight = height / cols;
-  
   for(int i = 0; i < rows; i++) {
     for(int j = 0; j < cols; j++) {
       noStroke();
