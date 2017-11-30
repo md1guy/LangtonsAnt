@@ -1,5 +1,9 @@
-int rows = 25;
-int cols = 25;
+import java.util.*;
+
+final Random random = new Random();
+
+int rows = 100;
+int cols = 100;
 
 public float cellWidth;
 public float cellHeight;
@@ -11,7 +15,7 @@ Ant ant;
 void setup() {
   size(800, 800);
   
-  frameRate(1);
+  frameRate(10000);
   
   for(int i = 0; i < rows; i++) {
     for(int j = 0; j < cols; j++) {
@@ -19,11 +23,11 @@ void setup() {
     }
   }
   
-  ant = new Ant(12, 12);
+  ant = new Ant(rows / 2, cols / 2);
 }
 
 void draw() {
-  background(255);
+  background(51);
   
   DrawGrid(grid);
   ant.DrawAnt();
@@ -36,11 +40,11 @@ void DrawGrid(boolean[][] grid) {
   
   for(int i = 0; i < rows; i++) {
     for(int j = 0; j < cols; j++) {
-      stroke(0);
+      noStroke();
       strokeWeight(1);
       fill(255);
       if(grid[i][j] == true) fill(0);
-      rect(j * cellWidth, i * cellHeight, cellWidth - 1, cellHeight - 1);
+      rect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
     }
   }
 }

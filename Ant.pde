@@ -1,5 +1,5 @@
 class Ant {
-  int direction = 0; // 0 - up; 1 - right; 2 - down; 3 - left;
+  int direction = random.nextInt(5); // 0 - up; 1 - right; 2 - down; 3 - left;
   int i;
   int j;
   
@@ -9,12 +9,8 @@ class Ant {
   }
   
   void DrawAnt() {
-    
-    
     fill(255, 0, 0);
     ellipse(i * cellWidth + cellWidth / 2, j * cellHeight + cellHeight / 2, cellWidth / 2, cellHeight / 2);
-    
-    
   }
   
   void MoveAnt(boolean[][] grid) {
@@ -46,7 +42,7 @@ class Ant {
     if (i < 0)         i = rows - 1;
     if (i > rows - 1)  i = 0;
     if (j < 0)         j = cols - 1;
-    if (j > cols - 1)  i = 0;
+    if (j > cols - 1)  j = 0;
     
      switch (direction) {
       case 0: x = i * cellWidth + cellWidth / 2;
