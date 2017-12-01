@@ -2,10 +2,12 @@ import java.util.*;
 
 final Random random = new Random();
 
-int rows = 400;
-int cols = 400;
+int rows = 800;
+int cols = 800;
 
 int antsCount = 100;
+
+int steps = 0;
 
 public float cellWidth;
 public float cellHeight;
@@ -43,6 +45,12 @@ void draw() {
   for(int i = 0; i < antsCount; i++) {
     ants[i].MoveAnt();
   }
+  
+  fill(0);
+  rect(5, height - 30, 100, 25);
+  fill(255);
+  text(steps, 7, height - 15);
+  steps++;
 }
 
 public void ShowCell(int x, int y, color col) {
