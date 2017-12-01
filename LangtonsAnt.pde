@@ -2,15 +2,17 @@ import java.util.*;
 
 final Random random = new Random();
 
-int rows = 100;
-int cols = 100;
+int rows = 400;
+int cols = 400;
+
+int antsCount = 100;
 
 public float cellWidth;
 public float cellHeight;
 
-boolean[][] grid = new boolean[rows][cols];
+public boolean[][] grid = new boolean[rows][cols];
 
-Ant ant;
+Ant[] ants = new Ant[antsCount];
 
 void setup() {
   size(800, 800);
@@ -22,29 +24,30 @@ void setup() {
   
   frameRate(10000);
   
-  for(int i = 0; i < rows; i++) {
-    for(int j = 0; j < cols; j++) {
-      grid[i][j] = false;
+  for(int y = 0; y < cols; y++) {
+    for(int x = 0; x < rows; x++) {
+      grid[x][y] = false;
+      ShowCell(x, y, color(0));
     }
   }
   
-  ant = new Ant(rows / 2, cols / 2);
+  
+  
+  for(int i = 0; i < antsCount; i++) {
+    ants[i] = new Ant(random.nextInt(cols - 1), random.nextInt(rows - 1));
+    ants[i].ShowAnt();
+  }
 }
 
 void draw() {
-  DrawGrid(grid);
-  ant.DrawAnt();
-  ant.MoveAnt(grid);
+  for(int i = 0; i < antsCount; i++) {
+    ants[i].MoveAnt();
+  }
 }
 
-void DrawGrid(boolean[][] grid) {
-  for(int i = 0; i < rows; i++) {
-    for(int j = 0; j < cols; j++) {
-      noStroke();
-      strokeWeight(1);
-      fill(255);
-      if(grid[i][j] == true) fill(0);
-      rect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
-    }
-  }
+public void ShowCell(int x, int y, color col) {
+  noStroke();
+  fill(0);
+  if(grid[x][y]) fill(col);
+  rect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
 }

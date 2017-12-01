@@ -1,66 +1,50 @@
 class Ant {
-  int direction = random.nextInt(5); // 0 - up; 1 - right; 2 - down; 3 - left;
-  int i;
-  int j;
+  int direction = random.nextInt(4); // 0 - up; 1 - right; 2 - down; 3 - left;
+  int x;
+  int y;
+  color col = color(random.nextInt((256)), random.nextInt((256)), random.nextInt((256)));
   
-  Ant (int i, int j) {
-    this.i = i;
-    this.j = j;
+  Ant(int x, int y) {
+    this.x = x;
+    this.y = y;
   }
   
-  void DrawAnt() {
+  void ShowAnt() {
+    noStroke();
     fill(255, 0, 0);
-    ellipse(i * cellWidth + cellWidth / 2, j * cellHeight + cellHeight / 2, cellWidth, cellHeight);
+    ellipse(x * cellWidth + cellWidth / 2, y * cellHeight + cellHeight / 2, cellWidth, cellHeight);
   }
   
-  void MoveAnt(boolean[][] grid) {
-    float x = 0;
-    float y = 0;
-    
-    if(grid[j][i] == true) {
+  void MoveAnt() {
+    if(grid[x][y]) {
       direction--;
-      grid[j][i] = false;
+      grid[x][y] = false;
     } else {
       direction++;
-      grid[j][i] = true;
+      grid[x][y] = true;
     }
     
     if(direction == 4) direction = 0;
     if(direction == -1) direction = 3;
     
+    ShowCell(x, y, col);
+    
     switch (direction) {
-      case 0: j--;
+      case 0: y--;
               break;
-      case 1: i++;
+      case 1: x++;
               break;
-      case 2: j++;
+      case 2: y++;
               break;
-      case 3: i--;
-              break;
-    }
-    
-    if (i < 0)         i = rows - 1;
-    if (i > rows - 1)  i = 0;
-    if (j < 0)         j = cols - 1;
-    if (j > cols - 1)  j = 0;
-    
-     switch (direction) {
-      case 0: x = i * cellWidth + cellWidth / 2;
-              y = j * cellHeight + cellHeight + cellHeight / 4;
-              break;
-      case 1: x = i * cellWidth + cellWidth / 4 - cellWidth / 2;
-              y = j * cellHeight + cellHeight / 2;
-              break;
-      case 2: x = i * cellWidth + cellWidth / 2;
-              y = j * cellHeight + cellHeight / 4 - cellHeight / 2;
-              break;
-      case 3: x = i * cellWidth + cellWidth + cellWidth / 2 - cellWidth / 4;
-              y = j * cellHeight + cellHeight / 2;
+      case 3: x--;
               break;
     }
     
-    stroke(0, 255, 0);
-    strokeWeight(cellWidth / 2);
-    point(x, y);
+    if (x < 0)         x = rows - 1;
+    if (x > rows - 1)  x = 0;
+    if (y < 0)         y = cols - 1;
+    if (y > cols - 1)  y = 0;
+    
+    ShowAnt();
   }
 }
