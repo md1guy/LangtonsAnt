@@ -2,7 +2,10 @@ class Ant {
   int direction = random.nextInt(4); // 0 - up; 1 - right; 2 - down; 3 - left;
   int x;
   int y;
+  
   color col = color(random.nextInt((256)), random.nextInt((256)), random.nextInt((256)));
+  
+  PVector offset = new PVector();
   
   Ant(int x, int y) {
     this.x = x;

@@ -7,8 +7,6 @@ int cols = 800;
 
 int antsCount = 1;
 
-int steps = 0;
-
 public float cellWidth;
 public float cellHeight;
 
@@ -49,8 +47,7 @@ void draw() {
   fill(0);
   rect(5, height - 30, 100, 25);
   fill(255);
-  text(steps, 7, height - 15);
-  steps++;
+  text(frameCount, 7, height - 15);
 }
 
 void mousePressed() {
